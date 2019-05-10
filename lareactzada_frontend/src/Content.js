@@ -6,6 +6,7 @@ function Content() {
   return (
     <div className="App">
       <h1>AppComponenet</h1>
+      <input type = "checkbox" />
     </div>
   );
 }
