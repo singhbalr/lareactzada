@@ -38,14 +38,16 @@ class Body extends React.Component{
     this.setState({title})
   }
 
-  checkmark(status){
-    // console.log(status);
-    // if (status){
-    //   this.setState({done : status})
-    // }else{
-    //   this.setState({done : status})
-    // }
-    this.setState({todo : [...this.state.todo.filter(todo => todo.done !== status)] })
+  checkmark(id){
+    
+    this.setState({todos: this.state.todo.map(todo => {
+      if(todo.id == id){
+        todo.done = !todo.done;
+      }
+
+      return todo;
+    })})
+
   }
 
 
@@ -58,7 +60,7 @@ class Body extends React.Component{
     return(
       <div>
           <Header changeTitle = {this.changeTitle.bind(this)} title = {this.state.title} />
-          <Frontpage todo = {this.state.todo} checkmark = {this.checkmark.bind(this)} />
+          <Frontpage key = {this.state.todo.id} todo = {this.state.todo} checkmark = {this.checkmark.bind(this)} />
           <ul>{list}</ul>
           <Footer />
       </div>
