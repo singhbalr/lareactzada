@@ -9,8 +9,8 @@ import axios from 'axios'
 import InputTask from './components/InputTask'
 
 class Body extends React.Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       listTasks : [
         {
@@ -20,9 +20,7 @@ class Body extends React.Component{
           completed : null
 
         },
-
       ],
-      testing1 : "testing1"
     }
   }
 
@@ -52,20 +50,20 @@ class Body extends React.Component{
     })})
 
   }
-  addTasks = (tasks) =>{
-    this.setState( state => ({
-      ...state,
-      addTasks : [
-        ...state.addTasks,
-        {
-          userId : 1,
-          id : 201,
-          title : tasks,
-          completed : false
-        }
-      ]
-    }))
-    console.log(this.state.listTasks);
+  addTasks = (tasks) =>{   
+
+    let value = {
+      userId : 99,
+      id : 201,
+      title : tasks,
+      completed : false
+    }
+    const taskstate =  [...this.state.listTasks];
+
+    this.setState({
+      listTasks : taskstate.concat(value)
+    });
+
   }
 
   sampleSetState = (text) => {
@@ -85,7 +83,7 @@ class Body extends React.Component{
     return(
       <div>
           <Header changeTitle = {this.changeTitle} title = {this.state.title} />
-          <InputTask addTasks = {this.addTasks} sampleSetState={this.sampleSetState} sampleText={this.state.testing1}/>
+          <InputTask addTasks = {this.addTasks} />
           <Frontpage checkmark = {this.checkmark} listTasks = {this.state.listTasks} testAxios = {this.testAxios} />
           <ul>{list}</ul>
           <Footer />
