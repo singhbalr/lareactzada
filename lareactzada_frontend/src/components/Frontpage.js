@@ -8,36 +8,26 @@ class Frontpage extends React.Component{
     this.props.testAxios();
   }
   
-  handleCheck(e){
+  handleCheck = (e) => {
+    console.log(e);
     const id = e.target.value;
 
     this.props.checkmark(id);
   }
-  checkAesthetics(done){
 
+  checkAesthetics = (completed) => {
     return{
-      textDecoration: done? 'line-through' : 'none'
+      textDecoration: completed? 'line-through' : 'none'
     }
   }
   
-
-
   render(){
-    console.log(this.props.listTasks);
     return(
       <div>
-        {/* {this.props.todo.map((value, index) => {
-          return (
-            <div>
-              <h1 key = {this.props.todo.id} style={this.checkAesthetics(value.done)}>{value.title}</h1><input key = {this.props.todo.id} type = "checkbox" value = {value.id} onClick = {this.handleCheck.bind(this)} />  
-            </div>
-          );
-        })} */}
-
          {this.props.listTasks.map((value, index) => {
             return (
               <div key = {value.id}>
-                <h1>{value.title}</h1><input type = "checkbox" value = {value.id} />  
+                <h1 style = {this.checkAesthetics(value.completed)}>{value.title}</h1><input type = "checkbox" value = {value.id} onChange = {this.handleCheck} checked = {value.completed} />  
               </div>
             );
         })} 

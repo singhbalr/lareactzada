@@ -5,32 +5,13 @@ import './test.js'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Frontpage from './components/Frontpage'
-import axios from 'axios';
+import axios from 'axios'
+import InputTask from './components/InputTask'
 
 class Body extends React.Component{
   constructor(){
     super();
     this.state = {
-      todo : [
-        {
-          id : 1,
-          title : "Go out",
-          name_owner : "raj",
-          done : false
-        },
-        {
-          id : 2,
-          title: "Go to work",
-          name_owner : "Beads",
-          done : false
-        },
-        {
-          id : 3,
-          title: "Go home",
-          name_owner : "Gabriel",
-          done : false
-        }
-      ],
       listTasks : [
         {
           userId : null,
@@ -40,7 +21,8 @@ class Body extends React.Component{
 
         },
 
-      ]
+      ],
+      testing1 : "testing1"
     }
   }
 
@@ -61,14 +43,35 @@ class Body extends React.Component{
 
   checkmark = (id) => {
     
-    this.setState({todos: this.state.todo.map(todo => {
-      if(todo.id == id){
-        todo.done = !todo.done;
+    this.setState({listTasks: this.state.listTasks.map(listTasks => {
+      if(listTasks.id == id){
+        listTasks.completed = !listTasks.completed;
       }
 
-      return todo;
+      return listTasks;
     })})
 
+  }
+  addTasks = (tasks) =>{
+    this.setState( state => ({
+      ...state,
+      addTasks : [
+        ...state.addTasks,
+        {
+          userId : 1,
+          id : 201,
+          title : tasks,
+          completed : false
+        }
+      ]
+    }))
+    console.log(this.state.listTasks);
+  }
+
+  sampleSetState = (text) => {
+    this.setState({
+      testing1 : text
+    })
   }
 
 
@@ -82,7 +85,8 @@ class Body extends React.Component{
     return(
       <div>
           <Header changeTitle = {this.changeTitle} title = {this.state.title} />
-          <Frontpage key = {this.state.todo.id} todo = {this.state.todo} checkmark = {this.checkmark} listTasks = {this.state.listTasks} testAxios = {this.testAxios} />
+          <InputTask addTasks = {this.addTasks} sampleSetState={this.sampleSetState} sampleText={this.state.testing1}/>
+          <Frontpage checkmark = {this.checkmark} listTasks = {this.state.listTasks} testAxios = {this.testAxios} />
           <ul>{list}</ul>
           <Footer />
       </div>
