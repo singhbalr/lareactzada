@@ -40,7 +40,7 @@ class Body extends React.Component{
   }
 
   checkmark = (id) => {
-    
+    console.log(id);
     this.setState({listTasks: this.state.listTasks.map(listTasks => {
       if(listTasks.id == id){
         listTasks.completed = !listTasks.completed;

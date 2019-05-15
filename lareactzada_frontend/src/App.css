@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+
+.card-whole{
+  border: 1px solid #d3cdcd;
+    /* height: 224px; */
+    /* height: inherit; */
+    /* height: auto; */
+    height: 250px;
+    overflow-y: scroll;
+    margin: 12px;
+}

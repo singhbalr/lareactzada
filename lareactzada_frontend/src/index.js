@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Body from './Body';
+//bootstrap-theme file for bootstrap 3 only
+import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 ReactDOM.render(<Body />, document.getElementById('root'));
 
