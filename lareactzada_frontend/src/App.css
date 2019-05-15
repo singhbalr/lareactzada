@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+*{
+  font-family: var(--main-font);
+}
+:root{
+  --main-font : 'Quicksand', sans-serif;
+}
+h5{
+  font-family: var(--main-font);
+}
 .App {
   text-align: center;
 }
