@@ -81,12 +81,14 @@ class Body extends React.Component{
     ];
 
     return(
-      <div>
+      <div class = "bg-image">
+        <div class = "all-container">
           <Header changeTitle = {this.changeTitle} title = {this.state.title} />
           <InputTask addTasks = {this.addTasks} />
           <Frontpage checkmark = {this.checkmark} listTasks = {this.state.listTasks} testAxios = {this.testAxios} />
           <ul>{list}</ul>
           <Footer />
+        </div>
       </div>
 
     );
