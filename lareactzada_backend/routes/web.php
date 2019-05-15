@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+$files = glob(__DIR__ . '/app-routes/*.php');
+foreach ($files as $file ) {
+	require($file);
+}
