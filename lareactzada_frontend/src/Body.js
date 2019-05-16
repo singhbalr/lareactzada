@@ -8,27 +8,36 @@ import Frontpage from './components/Frontpage'
 import axios from 'axios'
 import InputTask from './components/InputTask'
 
+
 class Body extends React.Component{
   constructor(props){
     super(props);
     this.state = {
       listTasks : [
         {
-          userId : null,
-          id : null,
-          title : null,
-          completed : null
+          todo_id : null,
+          user_id : null,
+          todo_type_id : null,
+          todo_title : null,
+          todo_content : null,
+          completed : null,
+          created_at : null,
+          updated_at : null,
 
         },
       ],
     }
   }
 
+
+
+
   testAxios = () => {
-    axios.get("https://jsonplaceholder.typicode.com/todos/")
+    axios.get('/web/get-todo/1')
     .then(response => {
       // (response)? this.setState({ listTasks: response.data }) : this.setState({ listTasks: null })
       this.setState({ listTasks: response.data })
+      console.log(this.state.listTasks);
     })
     .catch(function (error) {
       console.log(error);
@@ -40,10 +49,10 @@ class Body extends React.Component{
   }
 
   checkmark = (id) => {
-    console.log(id);
     this.setState({listTasks: this.state.listTasks.map(listTasks => {
-      if(listTasks.id == id){
+      if(listTasks.todo_id == id){
         listTasks.completed = !listTasks.completed;
+        console.log(listTasks.completed);
       }
 
       return listTasks;
@@ -53,10 +62,14 @@ class Body extends React.Component{
   addTasks = (tasks) =>{   
 
     let value = {
-      userId : 99,
-      id : 201,
-      title : tasks,
-      completed : false
+      todo_id : 2,
+      user_id : null,
+      todo_type_id : null,
+      todo_title : tasks,
+      todo_content : null,
+      completed : 0,
+      created_at : null,
+      updated_at : null,
     }
     const taskstate =  [...this.state.listTasks];
 
@@ -76,21 +89,17 @@ class Body extends React.Component{
 
   render(){
 
-    var list = [
-      <Content />
-    ];
 
     return(
-      <div class = "bg-image">
-        <div class = "all-container">
+      <div className = "bg-image">
+        <div className = "all-container">
           <Header changeTitle = {this.changeTitle} title = {this.state.title} />
           <InputTask addTasks = {this.addTasks} />
           <Frontpage checkmark = {this.checkmark} listTasks = {this.state.listTasks} testAxios = {this.testAxios} />
-          <ul>{list}</ul>
-          <Footer />
+          <Content />
         </div>
+        <Footer />
       </div>
-
     );
   }
 }

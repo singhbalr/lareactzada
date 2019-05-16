@@ -12,12 +12,14 @@ class Frontpage extends React.Component{
   handleCheck = (e) => {
     const id = e.target.value;
 
+    console.log('fired' + id);
+
     this.props.checkmark(id);
   }
 
   checkAesthetics = (completed) => {
     return{
-      textDecoration: completed? 'line-through' : 'none'
+      textDecoration: (completed == 1)? 'line-through' : 'none'
     }
   }
   randColors = () => {
@@ -34,9 +36,9 @@ class Frontpage extends React.Component{
       <div className = "row">
          {this.props.listTasks.map((value, index) => {
             return (
-                <div key = {value.id} className = "col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2">
+                <div key = {value.todo_id} className = "col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2">
                   <div className = "card-whole" style = {this.randColors()}>
-                  <span><input type = "checkbox" value = {value.id} onChange = {this.handleCheck} checked = {value.completed} /><h5 style = {this.checkAesthetics(value.completed)}>{value.title}</h5></span> 
+                  <span><input type = "checkbox" value = {value.todo_id} onChange = {this.handleCheck} checked = {value.completed} /><h5 style = {this.checkAesthetics(value.completed)}>{value.todo_title}</h5></span> 
                   </div>
                 </div>
             );
