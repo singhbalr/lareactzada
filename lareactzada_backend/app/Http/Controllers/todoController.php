@@ -15,7 +15,7 @@ class todoController extends Controller {
 
         $result = $todoModel->getTodo($userId);
 
-        return json_encode($result);
+        return $result;
     }
 
 }
