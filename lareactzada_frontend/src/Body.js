@@ -35,6 +35,7 @@ class Body extends React.Component{
   testAxios = () => {
     axios.get('/web/get-todo/1')
     .then(response => {
+      console.log(response);
       // (response)? this.setState({ listTasks: response.data }) : this.setState({ listTasks: null })
       this.setState({ listTasks: response.data })
       console.log(this.state.listTasks);
@@ -49,6 +50,7 @@ class Body extends React.Component{
   }
 
   checkmark = (id) => {
+    console.log(id);
     this.setState({listTasks: this.state.listTasks.map(listTasks => {
       if(listTasks.todo_id == id){
         listTasks.completed = !listTasks.completed;
@@ -61,20 +63,37 @@ class Body extends React.Component{
   }
   addTasks = (tasks) =>{   
 
-    let value = {
-      todo_id : 2,
-      user_id : null,
-      todo_type_id : null,
+    axios.post('/web/add-todo', {
+      user_id: 1,
+      todo_type_id: 1,
       todo_title : tasks,
-      todo_content : null,
-      completed : 0,
-      created_at : null,
-      updated_at : null,
-    }
-    const taskstate =  [...this.state.listTasks];
+      todo_content : 'sample',
+      completed : 0
+    })
+    .then(function (response) {
+      console.log(response);
 
-    this.setState({
-      listTasks : taskstate.concat(value)
+
+      // const taskstate =  [...this.state.listTasks];
+
+      // let value = {
+      //   todo_id : 2,
+      //   user_id : null,
+      //   todo_type_id : null,
+      //   todo_title : tasks,
+      //   todo_content : null,
+      //   completed : 0,
+      //   created_at : null,
+      //   updated_at : null,
+      // }
+
+      // this.setState({
+      //   listTasks : taskstate.concat(value)
+      // });
+
+    })
+    .catch(function (error) {
+      console.log(error);
     });
 
   }

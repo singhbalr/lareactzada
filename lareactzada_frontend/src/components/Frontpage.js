@@ -10,6 +10,7 @@ class Frontpage extends React.Component{
   }
   
   handleCheck = (e) => {
+    console.log(e.target);
     const id = e.target.value;
 
     console.log('fired' + id);
@@ -36,9 +37,9 @@ class Frontpage extends React.Component{
       <div className = "row">
          {this.props.listTasks.map((value, index) => {
             return (
-                <div key = {value.todo_id} className = "col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2">
+                <div key = {index} className = "col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2">
                   <div className = "card-whole" style = {this.randColors()}>
-                  <span><input type = "checkbox" value = {value.todo_id} onChange = {this.handleCheck} checked = {value.completed} /><h5 style = {this.checkAesthetics(value.completed)}>{value.todo_title}</h5></span> 
+                  <span><input type = "checkbox" value = {value.todo_id} onChange = {this.handleCheck} /><h5 style = {this.checkAesthetics(value.completed)}>{value.todo_title}</h5></span> 
                   </div>
                 </div>
             );
