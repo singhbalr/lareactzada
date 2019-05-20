@@ -32,11 +32,22 @@ class Todo extends Model {
         'todo_title' => $taskObject->todo_title,
         'todo_content' => $taskObject->todo_content,
         'completed' => $taskObject->completed,
-        'updated_at' => Carbon::now(),
-        'created_at' => Carbon::now()
+        'updated_at' => Carbon::now("Asia/Manila"),
+        'created_at' => Carbon::now("Asia/Manila")
     ]);
 
     return $result;
+  }
+
+  public function updateTasks($taskObject){
+    DB::table($this->table)
+    ->where('todo_id', $taskObject->todo_id)
+    ->update([
+      'completed' => $taskObject->completed,
+      'updated_at'=> Carbon::now("Asia/Manila")
+    ]);
+
+    return 'ok';
   }
 
 }
